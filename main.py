@@ -32,7 +32,6 @@ def read_recipes(
     return recipes
 
 
-
 @app.get("/recipes/{recipe_id}", response_model=schemas.Recipe)
 def read_recipe(recipe_id: int, db: Session = Depends(get_db)):
     db_recipe = crud.get_recipe(db, recipe_id=recipe_id)
