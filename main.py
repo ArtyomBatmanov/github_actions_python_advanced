@@ -24,7 +24,9 @@ def get_db():
 
 @app.get("/recipes/", response_model=list[schemas.Recipe])
 def read_recipes(
-    skip: int = DEFAULT_SKIP, limit: int = DEFAULT_LIMIT, db: Session = Depends(get_db)
+    skip: int = DEFAULT_SKIP,
+    limit: int = DEFAULT_LIMIT,
+    db: Session = Depends(get_db)
 ):
     recipes = crud.get_recipes(db, skip=skip, limit=limit)
     return recipes
@@ -39,5 +41,8 @@ def read_recipe(recipe_id: int, db: Session = Depends(get_db)):
 
 
 @app.post("/recipes/", response_model=schemas.Recipe)
-def create_recipe(recipe: schemas.RecipeCreate, db: Session = Depends(get_db)):
+def create_recipe(
+    recipe: schemas.RecipeCreate,
+    db: Session = Depends(get_db)
+):
     return crud.create_recipe(db=db, recipe=recipe)
