@@ -10,4 +10,3 @@ class Recipe(Base):
     ingredients = Column(String)
     description = Column(String)
     views = Column(Integer, default=0)
-

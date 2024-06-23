@@ -1,4 +1,3 @@
-
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -23,6 +22,7 @@ app.dependency_overrides[get_db] = override_get_db
 
 client = TestClient(app)
 
+
 def test_create_recipe():
     response = client.post(
         "/recipes/",
@@ -39,11 +39,13 @@ def test_create_recipe():
     assert "id" in data
     assert "views" in data
 
+
 def test_read_recipes():
     response = client.get("/recipes/")
     assert response.status_code == 200
     data = response.json()
     assert len(data) > 0
+
 
 def test_read_recipe():
     response = client.post(
@@ -63,6 +65,7 @@ def test_read_recipe():
     assert response.status_code == 200
     data = response.json()
     assert data["title"] == "Test Recipe"
+
 
 def test_read_recipe_not_found():
     response = client.get("/recipes/999")

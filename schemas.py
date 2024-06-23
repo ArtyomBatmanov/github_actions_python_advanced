@@ -18,4 +18,3 @@ class Recipe(RecipeBase):
 
     class Config:
         orm_mode = True
-
