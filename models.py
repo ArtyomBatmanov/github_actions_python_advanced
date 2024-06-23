@@ -3,7 +3,7 @@ from database import Base
 
 
 class Recipe(Base):
-    __tablename__ = 'recipes'
+    __tablename__ = "recipes"
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
     preparation_time = Column(Integer)

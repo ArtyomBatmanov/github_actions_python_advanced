@@ -11,12 +11,14 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base.metadata.create_all(bind=engine)
 
+
 def override_get_db():
     db = TestingSessionLocal()
     try:
         yield db
     finally:
         db.close()
+
 
 app.dependency_overrides[get_db] = override_get_db
 
@@ -30,8 +32,8 @@ def test_create_recipe():
             "title": "Spaghetti Carbonara",
             "preparation_time": 30,
             "ingredients": "Spaghetti, Eggs, Bacon, Parmesan Cheese",
-            "description": "Classic Italian pasta dish with creamy sauce"
-        }
+            "description": "Classic Italian pasta dish with creamy sauce",
+        },
     )
     assert response.status_code == 200
     data = response.json()
@@ -54,8 +56,8 @@ def test_read_recipe():
             "title": "Test Recipe",
             "preparation_time": 15,
             "ingredients": "Test Ingredient 1, Test Ingredient 2",
-            "description": "This is a test recipe"
-        }
+            "description": "This is a test recipe",
+        },
     )
     assert response.status_code == 200
     data = response.json()
