@@ -24,10 +24,13 @@ def get_db():
 
 @app.get("/recipes/", response_model=list[schemas.Recipe])
 def read_recipes(
-    skip: int = DEFAULT_SKIP, limit: int = DEFAULT_LIMIT, db: Session = Depends(get_db)
+    skip: int = DEFAULT_SKIP,
+    limit: int = DEFAULT_LIMIT,
+    db: Session = Depends(get_db)
 ):
     recipes = crud.get_recipes(db, skip=skip, limit=limit)
     return recipes
+
 
 
 @app.get("/recipes/{recipe_id}", response_model=schemas.Recipe)
