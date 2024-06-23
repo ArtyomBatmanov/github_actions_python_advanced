@@ -39,5 +39,8 @@ def read_recipe(recipe_id: int, db: Session = Depends(get_db)):
 
 
 @app.post("/recipes/", response_model=schemas.Recipe)
-def create_recipe(recipe: schemas.RecipeCreate, db: Session = Depends(get_db)):
+def create_recipe(
+    recipe: schemas.RecipeCreate,
+    db: Session = Depends(get_db)
+):
     return crud.create_recipe(db=db, recipe=recipe)
