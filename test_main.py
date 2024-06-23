@@ -8,7 +8,8 @@ from main import app, get_db
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test_recipes.db"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
-TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+TestingSessionLocal = sessionmaker(
+    autocommit=False, autoflush=False, bind=engine)
 Base.metadata.create_all(bind=engine)
 
 

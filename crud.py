@@ -5,7 +5,8 @@ import schemas
 
 
 def get_recipe(db: Session, recipe_id: int):
-    return db.query(models.Recipe).filter(models.Recipe.id == recipe_id).first()
+    return (db.query(models.Recipe)
+            .filter(models.Recipe.id == recipe_id).first())
 
 
 def get_recipes(db: Session, skip: int = 0, limit: int = 10):
